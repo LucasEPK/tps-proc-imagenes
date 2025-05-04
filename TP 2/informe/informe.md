@@ -1,4 +1,4 @@
-# Trabajo Practico 1
+# Trabajo Practico 2
 **Alumnos:**  
 Nahuel Arrieta  
 Lucas Moyano
