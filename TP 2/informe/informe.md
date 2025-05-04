@@ -58,3 +58,65 @@ Usamos maximo para terminar uniendo la imagen original con la anterior:
 
 ## 3. Dominio espacial
 
+### 8. Suavizado y Sobel (*): Aplicar un filtro gaussiano antes del operador de Sobel y analizar las diferencias en la detección de bordes.
+
+Sobel:  
+![alt text](imgs/sobel.png)
+
+Sobel con gaussiano:  
+![alt text](imgs/sobel_blurred.png)
+
+Notamos que los bordes ya no están tan definidos como cuando aplicamos sobel a la imagen original, son más gruesos y menos detallados.
+
+### 12. (*) Comparación de Métodos de Detección de Bordes : Comparar Sobel, Prewitt, Laplace y Canny trabajando diversas imágenes con características diferentes.
+
+Imagen original:  
+![alt text](imgs/kurisu_gray.png)  
+Sobel:  
+![alt text](imgs/kurisu_sobel.png)  
+Prewitt:  
+![alt text](imgs/kurisu_prewitt.png)  
+Laplace:  
+![alt text](imgs/kurisu_laplaciano.png)  
+Canny:  
+![alt text](imgs/kurisu_canny.png)  
+
+Imagen original:  
+![alt text](imgs/lucas_grey.png)  
+Sobel:  
+![alt text](imgs/lucas_sobel.png)  
+Prewitt:  
+![  ](imgs/lucas_prewitt.png)  
+Laplace:  
+![alt text](imgs/lucas_laplaciano.png)  
+Canny:  
+![alt text](imgs/lucas_canny.png)  
+
+Imagen original:  
+![alt text](imgs/bp_gray.png)  
+Sobel:  
+![alt text](imgs/bp_sobel.png)  
+Prewitt:  
+![alt text](imgs/bp_prewitt.png)  
+Laplace:  
+![alt text](imgs/bp_laplaciano.png)  
+Canny:  
+![  ](imgs/bp_canny.png)  
+
+Observando las imagenes podemos observar como todos los filtros son más buenos cuando se trata de un dibujo, ya que en general los bordes están mucho mejor definidos.  
+
+En una fotografía el que pudo detectar mejor los bordes fue Sobel, pero probablemente con diferentes parametros se puede mejorar el resultado con canny.
+
+### 13. (*) Realce de Detalles: Aplicar un filtro de paso alto y sumarlo a la imagen original para mejorar los detalles.
+
+Imagen original:  
+![alt text](imgs/kurisu_gray.png)  
+Canny aplicado:  
+![alt text](imgs/kurisu_canny.png)  
+Sumados:  
+![alt text](imgs/kurisu_borders_added.png)  
+
+### 15. (*) Filtro de Diferencia Gaussiana (DoG): Aplicar la técnica de Diferencia de Gaussiana para resaltar bordes.
+
+Diferencia gaussiana:  
+![alt text](imgs/kurisu_dog.png)
