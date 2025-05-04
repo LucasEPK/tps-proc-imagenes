@@ -5,21 +5,21 @@ Lucas Moyano
 
 ## Sección 1: Histogramas
 
-### 7. (*) Transformar la distribuci´on de intensidades de una imagen para que se parezca a la de otra. Implementar el ajuste de histograma usando OpenCV o skimage.exposure.match histograms(). Comparar los histogramas antes y despu´es del ajuste.
+### 7. (*) Transformar la distribución de intensidades de una imagen para que se parezca a la de otra. Implementar el ajuste de histograma usando OpenCV o skimage.exposure.match histograms(). Comparar los histogramas antes y después del ajuste.
 Se utilizó `exposure.match_histograms` de `skimage` para ajustar el histograma de la imagen 1 al de la imagen 2.
 
 ![alt text](imgs/Lenna.png)
 ![alt text](imgs/mate.png)
 ![alt text](imgs/Lenna-adjusted-mate.png)
 
-### 8. (*) Aplicar ecualizaci´on de histograma a una imagen en escala de grises. Comparar la imagen original con la ecualizada.
+### 8. (*) Aplicar ecualización de histograma a una imagen en escala de grises. Comparar la imagen original con la ecualizada.
 Se utilizó `cv2.equalizeHist` para ecualizar el histograma de la imagen. A continuación se muestran la imagen original y la ecualizada, y sus histogramas.
 
 ![alt text](imgs/Lenna-grayscale.png)
 ![alt text](imgs/Lenna-equalized.png)
 ![alt text](imgs/Lenna-hist-comparission.png)
 
-### 9. (*) Implementar una umbralizaci´on manual eligiendo un valor de umbral. Usar el m´etodo de Otsu para calcular un umbral ´optimo autom´aticamente.
+### 9. (*) Implementar una umbralización manual eligiendo un valor de umbral. Usar el método de Otsu para calcular un umbral óptimo automáticamente.
 Se implementó una función propia de umbralización manual y para el método de Otsu se utilizó `cv2.threshold` con el flag `cv2.THRESH_BINARY + cv2.THRESH_OTSU`.
 A continuación se muestran los resultados de aplicar ambos métodos a la imagen Lenna.
 
@@ -27,7 +27,7 @@ A continuación se muestran los resultados de aplicar ambos métodos a la imagen
 ![alt text](imgs/Lenna-manual-threshold.png)
 ![alt text](imgs/Lenna-Otsu-threshold.png)
 
-### 11. (*) Implementar la transformaci´on gamma I’=I^y permitiendo ajustar el valor de y dinámicamente. Aplicar diferentes valores de y en distintas regiones de la imagen (por ejemplo, usando una m´ascara o adaptando y en funci´on del brillo local). Visualizar el efecto de la correcci´on gamma en la imagen y en su histograma.
+### 11. (*) Implementar la transformación gamma I’=I^y permitiendo ajustar el valor de y dinámicamente. Aplicar diferentes valores de y en distintas regiones de la imagen (por ejemplo, usando una máscara o adaptando y en función del brillo local). Visualizar el efecto de la corrección gamma en la imagen y en su histograma.
 Se implementó una función para aplicar la transformación gamma a la imagen. A continuación se muestra el resultado de aplicar diferentes valores de gamma a distintas regiones de la imagen.
 
 ![alt text](imgs/Lenna-grayscale.png)
