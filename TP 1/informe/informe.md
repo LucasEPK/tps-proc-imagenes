@@ -9,15 +9,31 @@ Lucas Moyano
 
 #### a. **Usando la libreria cv2 y el metodo cvtColor()**
 Usando `cv2.cvtColor()` el resultado es el siguiente:
+
+```python
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+```
+
+
+
 ![](imgs/lenna_cv2_cvtcolor.png)
 
 #### b. **Usando la fórmula de luminancia**
 Utilizando la fórmula `L = 0.299 * R + 0.587 * G + 0.114 * B` (se ponderán los valores segun la percepción del ojo humano):
 
+```python
+luminance = 0.299 * red_channel + 0.587 * green_channel + 0.114 * blue_channel
+luminance = np.clip(luminance, 0, 255).astype(np.uint8)
+```
+
 ![](imgs/lenna_luminancia.png)
 
 #### c. **Usando scickit-image y el método rgb2gray**
 Utilizando `skimage.color.rgb2gray()` el resultado es el siguiente:
+
+```python
+image_gray = rgb2gray(image)
+```
 
 ![](imgs/lenna_luminancia.png)
 
@@ -43,18 +59,37 @@ Al ojo humano, parece no haber diferencia entre una profundidad de bits de 8 y u
 
 A continuación se muestran las imágenes convertidas a los diferentes modos de color. Cabe destacar que las imágenes visualizadas se muestran en el espacio de color RGB, pero los valores de los píxeles corresponden a los diferentes espacios de color.
 
-CMYK:
+#### CMYK:
+```python
+image_cmyk = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB first
+image_cmyk = 255 - image_cmyk  # In CMYK, we subtract RGB values from 255
+```
+
 ![](imgs/lenna_cmyk.PNG)
-HSV:
+
+#### HSV:
+```python
+image_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+```
 ![](imgs/lenna_hsv.PNG)
-HSL:
+
+#### HSL:
+```python
+image_hsl = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
+```
+
 ![](imgs/lenna_hsl.PNG)
 
 
 ### 8. **(*) Tomar la imagen convertida en escala de grises y volver a convertir al en modo RGB. ¿Qué ha sucedido?**
+```python
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+image_rgb = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2BGR)
+```
 
 ![](imgs/lenna_gray_to_color.png)  
-Cuando se convirtió a escala de grises, se perdió información respectiva a la intensidad de cada color. Cuando volvemos a convertir a RGB, se aplica la misma información a todos los canales, perdiendo toda diferencia entre intensidad de colores.
+
+Cuando se convirtió a escala de grises, se perdió información respectiva a la intensidad de cada color. Cuando volvemos a convertir a RGB, se aplica la misma información a todos los canales, perdiendo toda diferencia entre intensidad de colores. 
 
 
 ## Sección 2: Compresión de Imagenes
@@ -80,6 +115,46 @@ El SSIM es una métrica más avanzada y perceptual que evalúa la calidad de una
 ### 6. **(*) Implementar un modelo de compresión basado en codificación Run-Length Encoding (RLE). El algoritmo Run-Length Encoding (RLE) reduce el tamaño de una imagen representando secuencias consecutivas de píxeles idénticos como una sola entrada. Para ello convertir una imagen en escala de grises. luego, implementar el algoritmo RLE para comprimir la imagen. Posteriormente, implementar una funcion para descomprimir la imagen. Al finalizar, mostrar la imagen original y la imagen reconstruida. Probar con dos o tres imagenes que tengan diferentes características, modos de color. Utilizar alguna de las metricas nombradas anteriormente e evaluar el resultado de la misma.**
 
 Se implementó un algoritmo propio de compresión y descompresión utilizando RLE. Su metodo de compresión consiste en recorrer la imagen y contar la cantidad de píxeles consecutivos que tienen el mismo valor. Luego, se almacena el valor del píxel y la cantidad de veces que se repite. La descompresión consiste en recorrer la lista comprimida y reconstruir la imagen original utilizando los valores y las cantidades almacenadas.
+
+```python
+def run_length_enconde(img):
+  encoded_img = []
+
+  # First we iterate the image
+  for row in range(img.shape[0]):
+    encoded_img_row = []
+    previous_pixel_value = img[row, 0]
+    count = 0
+    for col in range(img.shape[1]):
+        pixel_value = img[row, col]
+        if pixel_value == previous_pixel_value:
+            count += 1
+
+        else:
+          encoded_img_row.append((previous_pixel_value, count))
+          count = 1
+
+        previous_pixel_value = pixel_value
+    # This fixes bug of not appending last value
+    encoded_img_row.append((previous_pixel_value, count))
+    # Appends row
+    encoded_img.append(encoded_img_row)
+  return encoded_img
+```
+
+```python
+
+def run_length_decode(img):
+  decoded_img = []
+  for row in range(len(img)):
+    decoded_img_row = []
+    for pixel_value, count in img[row]:
+      for _ in range(count):
+        decoded_img_row.append(pixel_value)
+
+    decoded_img.append(decoded_img_row)
+  return np.array(decoded_img, dtype=np.uint8)
+```
 
 Imagenes originales:  
 ![](imgs/senkuOG.png)
