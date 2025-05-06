@@ -3,6 +3,10 @@
 Nahuel Arrieta  
 Lucas Moyano
 
+## Introducción
+El presente informe corresponde al primer trabajo práctico de la materia "Procesamiento de Imágenes". En este trabajo se abordaron diferentes temas relacionados con la manipulación y compresión de imágenes, así como la conversión entre diferentes modos de color. Se realizaron ejercicios prácticos utilizando Python y las librerías OpenCV y scikit-image.
+Para explicar las implementaciones, en cada consigna se encuentra parte del código utilizado para la resolución de los ejercicios. El código completo se encuentra en el notebook `TP 1/code/TP1.ipynb`. 
+
 ## Sección 1:  Modos de color en imagenes
 
 ### 6. **(*) La conversión de una imagen de color a escala de grises se puede hacer de varias formas. El ejercicio consiste en convertir la imagen de Lenna color a escala de grises utilizando diferentes metodos.**

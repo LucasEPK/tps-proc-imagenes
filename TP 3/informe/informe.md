@@ -3,6 +3,10 @@
 Nahuel Arrieta  
 Lucas Moyano
 
+## Introducción
+El presente informe corresponde al tercer trabajo práctico de la materia "Procesamiento de Imágenes". En este trabajo se abordaron diferentes temas relacionados con la morfología matemática, incluyendo la apertura y clausura morfológica, el gradiente morfológico y la segmentación básica. Se realizaron ejercicios prácticos utilizando Python y las librerías OpenCV y scikit-image.
+Para explicar las implementaciones, en cada consigna se encuentra parte del código utilizado para la resolución de los ejercicios. El código completo se encuentra en el notebook `TP 3/code/TP3.ipynb`.
+
 ## Sección 1: Operadores morfologicos
 
 ### 4. (*) Apertura y clausura morfológica: Aplicar apertura y clausura para eliminar ruido o cerrar huecos. Comparar la imagen original y la resultante de aplicar el operador. Comentar los efectos visuales. Comparar con los resultados anteriores. Mostrar 4 subplots: original, apertura, cierre, diferencia entre ambos.

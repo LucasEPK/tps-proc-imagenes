@@ -3,6 +3,10 @@
 Nahuel Arrieta  
 Lucas Moyano
 
+## Introducción
+El presente informe corresponde al segundo trabajo práctico de la materia "Procesamiento de Imágenes". En este trabajo se abordaron diferentes temas relacionados con la manipulación de imágenes, como la transformación de histogramas, la combinación de imágenes y el uso de filtros en el dominio espacial. Se realizaron ejercicios prácticos utilizando Python y las librerías OpenCV y scikit-image.
+Para explicar las implementaciones, en cada consigna se encuentra parte del código utilizado para la resolución de los ejercicios. El código completo se encuentra en el notebook `TP 2/code/TP2.ipynb`.
+
 ## Sección 1: Histogramas
 
 ### 7. (*) Transformar la distribución de intensidades de una imagen para que se parezca a la de otra. Implementar el ajuste de histograma usando OpenCV o skimage.exposure.match histograms(). Comparar los histogramas antes y después del ajuste.
