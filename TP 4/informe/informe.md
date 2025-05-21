@@ -98,3 +98,36 @@ Filtros de paso alto:
 ![Imagen filtrada (pasa alto - cutoff=90)](images/hp90.png)
 
 ![Espectro de magnitud (pasa alto - cutoff=90)](images/hp90-mgn.png)
+
+### (c) ¿Qu´e representa la fase de la transformada de Fourier de una imagen? ¿Qu´e ocurre si se conserva solo la fase o solo la magnitud? Ejercicio sugerido: Reconstruir una imagen usando solo la magnitud y fase de otra imagen, intercambiar fase y magnitud entre dos im´agenes distintas.
+
+La fase de la transformada de Fourier de una imagen representa el desplazamiento de cada una de las frecuencias. 
+
+Si se conserva solo la fase y se descarta la magnitud, la imagen reconstruida sigue mostrando la estructura y formas reconocibles, aunque con contraste distorsionado. 
+
+En cambio, si se conserva solo la magnitud y se elimina la fase, la imagen reconstruida pierde su estructura y se vuelve irreconocible, pareciendo una niebla borrosa. 
+
+En el siguiente ejemplo se intercambiaron la fase y la magnitud entre dos imágenes distintas. 
+
+Imagen 1:
+
+![Imagen 1](images/Lenna.png)
+
+![Espectro de Fourier (magnitud)](images/img-1-mgn.png)
+
+![Espectro de Fourier (fase)](images/img-1-ph.png)
+
+Imagen 2:
+
+![Imagen 2](images/cameraman.png)
+
+![Espectro de Fourier (magnitud)](images/img-2-mgn.png)
+
+![Espectro de Fourier (fase)](images/img-2-ph.png)
+
+Imagenes reconstruidas:
+
+![Imagen reconstruida 1](images/new-image-1.png)
+
+![Imagen reconstruida 2](images/new-image-2.png)
+
