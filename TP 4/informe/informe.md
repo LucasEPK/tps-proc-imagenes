@@ -144,27 +144,23 @@ Cuando se traslada una imagen, la teoría dice que solo debería cambiar la fase
 
 Imágen original:
 
-![alt text](images/Lenna.png)
+![alt text](images/Lenna-full.png)
 
-![alt text](images/Lenna-mgn.png)
-
-![alt text](images/Lenna-ph.png)
 
 Imágen rotada 45°:
 
 ![alt text](images/rotated-45.png)
 
-![alt text](images/rotated-45-mg.png)
+Imágen rotada 90°:
 
-![alt text](images/rotated-45-ph.png)
+![alt text](images/rotated-90.png)
+
 
 Imágen trasladada:
 
 ![alt text](images/traslated.png)
 
-![alt text](images/traslated-mg.png)
 
-![alt text](images/traslated-ph.png)
 
 
 ### (f) ¿C´omo se refleja una estructura peri´odica en el dominio frecuencial? Ejercicio sugerido: Usar im´agenes sint´eticas (rejillas, l´ıneas) y observar c´omo se representan sus frecuencias dominantes
