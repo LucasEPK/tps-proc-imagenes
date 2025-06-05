@@ -131,3 +131,37 @@ Imagenes reconstruidas:
 
 ![Imagen reconstruida 2](images/new-image-2.png)
 
+### (d) ¿Por qu´e se centra la transformada de Fourier para su visualizaci´on? ¿Qu´e efecto tiene? Ejercicio sugerido: Mostrar el espectro de magnitud con y sin aplicar fftshift.
+Se centra la transformada de Fourier usando fftshift para facilitar su visualización, ya que por defecto el componente de frecuencia cero (las bajas frecuencias) queda en la esquina superior izquierda, lo que resulta poco intuitivo. Al centrarla, las bajas frecuencias se ubican en el centro y las altas en los bordes, permitiendo una interpretación más clara del contenido espectral y facilitando el diseño de filtros. Esta operación no altera los datos originales, solo reorganiza su disposición para hacerla más comprensible.
+
+![alt text](images/mg_no_shift.png)
+
+![alt text](images/mg_shift.png)
+
+### (e)  ¿C´omo se comporta la transformada de Fourier ante la traslaci´on o rotaci´on de una imagen? Ejercicio sugerido: Aplicar una traslaci´on o rotaci´on y comparar los espectros de magnitud y fase antes y despu´es.
+
+Cuando se traslada una imagen, la teoría dice que solo debería cambiar la fase del espectro de Fourier, mientras que la magnitud debería mantenerse igual. Sin embargo, en los experimentos realizados, al trasladar la imagen con cv2.warpAffine, se generan bordes negros en las zonas que quedan vacías. Estos bordes introducen nuevos detalles en la imagen que afectan el resultado, por lo que la magnitud también cambia. En cambio, al aplicar una rotación, el espectro de Fourier se rota en el mismo ángulo que la imagen, conservando su forma. Esto se puede ver claramente en las imágenes comparadas.
+
+Imágen original:
+
+![alt text](images/Lenna.png)
+
+![alt text](images/Lenna-mgn.png)
+
+![alt text](images/Lenna-ph.png)
+
+Imágen rotada 45°:
+
+![alt text](images/rotated-45.png)
+
+![alt text](images/rotated-45-mg.png)
+
+![alt text](images/rotated-45-ph.png)
+
+Imágen trasladada:
+
+![alt text](images/traslated.png)
+
+![alt text](images/traslated-mg.png)
+
+![alt text](images/traslated-ph.png)
