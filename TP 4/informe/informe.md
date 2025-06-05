@@ -5,7 +5,7 @@ Lucas Moyano
 
 ## Introducción
 El presente informe corresponde al cuarto trabajo de la materia "Procesamiento de Imágenes". En el mismo, se abordan ejercicios relacionadas a la Trasnformada Discreta de Fourier (DFT) aplicada a imágenes. Se busca analizar la frecuencia de las imágenes y su representación en el dominio de la frecuencia.
-Para explicar las implementaciones, en cada consigna se encuentra parte del código utilizado para la resolución de los ejercicios. El código completo se encuentra en el notebook `TP 2/code/TP2.ipynb`.
+Para explicar las implementaciones, en cada consigna se encuentra parte del código utilizado para la resolución de los ejercicios. El código completo se encuentra en el notebook `TP 4/code/TP 4.ipynb`.
 
 ## Sección 1: Transformada de Fourier
 ### 10. (*) Responder las siguientes preguntas. Tratar de utilizar dos im´agenes en aquellos ejercicios que no soliciten algo particular. Utilizar una imagen que muestre frecuencias bajas en su mayor´ıa y otras con mayor´ıa de frecuencias altas. Por cada pregunta se ha agregado una sugerencia de como realizar el ejercicio practico para acompa˜nar su respuesta.
@@ -71,6 +71,37 @@ Por ejemplo:
 #### (b) ¿Qu´e ocurre si eliminamos las componentes de alta frecuencia de una imagen? ¿Y si eliminamos las de baja frecuencia? Ejercicio sugerido: Aplicar filtros pasa bajos y pasa altos en el dominio de la frecuencia y reconstruir la imagen con la transformada inversa.
 
 Si eliminamos las componentes de alta frecuencia de una imagen, la imagen resultante se verá más suave y menos detallada, ya que estamos eliminando los bordes y detalles finos. Esto se traduce en una imagen más borrosa. Por otro lado, si eliminamos las componentes de baja frecuencia, la imagen resultante tendrá un aspecto más ruidoso y con más detalles, pero perderá la información de las áreas homogéneas.
+
+El código para aplicar filtros pasa bajos y pasa altos es el siguiente:
+
+```python
+def ideal_high_pass_filter(magnitude, cutoff):
+    # Create a mask with the same shape as the magnitude spectrum
+    rows, cols = magnitude.shape
+    center_row, center_col = rows // 2, cols // 2
+    y, x = np.ogrid[:rows, :cols]
+    mask = (x - center_col) ** 2 + (y - center_row) ** 2 >= cutoff ** 2
+
+    # Apply the mask to the magnitude spectrum
+    filtered_magnitude = magnitude * mask
+
+    return filtered_magnitude
+```
+
+```python
+def ideal_low_pass_filter(magnitude, cutoff):
+    # Create a mask with the same shape as the magnitude spectrum
+    rows, cols = magnitude.shape
+    center_row, center_col = rows // 2, cols // 2
+    y, x = np.ogrid[:rows, :cols]
+    mask = (x - center_col) ** 2 + (y - center_row) ** 2 <= cutoff ** 2
+
+    # Apply the mask to the magnitude spectrum
+    filtered_magnitude = magnitude * mask
+
+    return filtered_magnitude
+```
+
 
 En los siguientes ejemplos se aplicarion filtros ideales (circulos con radio cutoff) a la imagen de Lenna. En el caso del filtro pasa bajo, se eliminan las frecuencias altas (fuera del circulo), mientras que en el caso del filtro pasa alto, se eliminan las frecuencias bajas (dentro del circulo).
 
@@ -179,3 +210,99 @@ Lineas diagonales:
 Circunferencias:
 
 ![alt text](images/circles.png)
+
+
+### (g) ¿Qu´e diferencias se observan en el espectro de im´agenes suaves vs. im´agenes con bordes pronunciados? Ejercicio sugerido: Comparar el espectro de una imagen desenfocada vs. la original con bordes definidos.
+
+Las imágenes suaves, como las desenfocadas, tienen un espectro de Fourier que muestra una concentración de energía en las frecuencias bajas, ya que carecen de detalles finos y bordes pronunciados. 
+
+En contraste, las imágenes con bordes definidos presentan un espectro con una mayor presencia de frecuencias altas, lo que indica la existencia de detalles y cambios abruptos en la intensidad de los píxeles.
+
+Imágen original:
+
+![alt text](images/Lenna-full.png)
+
+Imágen desenfocada:
+
+![alt text](images/blured.png)
+
+
+### (h) ¿Qu´e ocurre si aplicamos un filtro de forma circular o rectangular en el espectro? ¿C´omo cambia la imagen? Ejercicio sugerido: Implementar m´ascaras ideales de paso bajo y paso alto circulares y cuadradas y observar sus efectos.
+
+Al aplicar un filtro de forma circular o rectangular en el espectro de Fourier, se eliminan ciertas frecuencias de la imagen. Los filtros de paso bajo eliminan las frecuencias altas, suavizando la imagen y eliminando detalles finos. Esto resulta en una imagen más borroas.
+
+![alt text](images/Lenna-grayscale.png)
+
+![alt text](images/Lenna-ideal-low-pass.png)
+
+![alt text](images/Lenna-squared-low-pass.png)
+
+### (i) ¿Cu´al es la relaci´on entre el patr´on de una imagen (orientaci´on, repetici´on) y la simetr´ıa del espectro? Ejercicio sugerido: Usar im´agenes diagonales o repetitivas y analizar la simetr´ıa del espectro.
+
+La relación entre el patrón de una imagen y la simetría del espectro de Fourier es directa. Las imágenes con patrones repetitivos o con una orientación específica generan simetrías en el espectro. Por ejemplo, una imagen con líneas diagonales produce un espectro que muestra simetría en torno a las diagonales del plano de frecuencia.
+
+Lineas diagonales:
+
+![alt text](images/lines-45.png)
+
+Circunferencias:
+
+![alt text](images/circles.png)
+
+
+### (j) ¿C´omo puede usarse el dominio frecuencial para eliminar ruido peri´odico en una imagen? Ejercicio sugerido: Introducir ruido peri´odico artificialmente y dise˜nar un filtro para suprimirlo en el dominio de la frecuencia.
+
+El dominio frecuencial es útil para eliminar ruido periódico en una imagen, ya que el ruido periódico se manifiesta como picos en el espectro de Fourier. Al diseñar un filtro que atenúe o elimine estas frecuencias específicas, podemos suprimir el ruido y recuperar la imagen original.
+
+La implementación elimina ruido periodico en forma de lineas verticales. Consiste en encontrar picos ubicados en el eje vertical del espectro de Fourier y aplicar un filtro gaussiano para atenuar esas frecuencias.
+
+```python
+from scipy.signal import find_peaks
+
+def gaussian_notch_filter(shape, centers, sigma=5):
+    M, N = shape
+    U, V = np.meshgrid(np.arange(N), np.arange(M))
+    notch_mask = np.ones((M, N), dtype=np.float32)
+
+    for (u0, v0) in centers:
+        D2 = (V - u0)**2 + (U - v0)**2
+        gaussian = np.exp(-D2 / (2 * sigma**2))
+        notch_mask *= (1 - gaussian)
+
+    return notch_mask
+
+def remove_horizontal_noise(magnitude, phase, sigma=5, threshold_factor=2):
+    M, N = magnitude.shape
+    center_u, center_v = M // 2, N // 2
+
+    # Projection over the vertical axis
+    vertical_profile = magnitude[:, center_v].copy()
+    vertical_profile[center_u - 5:center_u + 5] = 0  # Ignore the center frequency
+
+    # Detect peakss
+    threshold = vertical_profile.mean() + threshold_factor * vertical_profile.std()
+    peaks, _ = find_peaks(vertical_profile, height=threshold)
+
+    # Calculate the center of the peaks
+    centers = [(u, center_v) for u in peaks] + [(M - u, center_v) for u in peaks]
+
+    # Create the notch filter
+    notch_mask = gaussian_notch_filter((M, N), centers, sigma=sigma)
+
+    # Apply the notch filter to the magnitude spectrum
+    filtered_magnitude = magnitude * notch_mask
+
+    return filtered_magnitude, phase
+```
+
+Los resultados fueron los siguientes:
+
+![alt text](images/noisy.png)
+
+![alt text](images/noisy-mg.png)
+
+Luego de aplicar el filtro, se reconstruyó la imagen y se comparó con la original:
+
+![alt text](images/fixed-mg.png)
+
+![alt text](images/fixed.png)
