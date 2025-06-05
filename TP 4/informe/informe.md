@@ -165,3 +165,21 @@ Imágen trasladada:
 ![alt text](images/traslated-mg.png)
 
 ![alt text](images/traslated-ph.png)
+
+
+### (f) ¿C´omo se refleja una estructura peri´odica en el dominio frecuencial? Ejercicio sugerido: Usar im´agenes sint´eticas (rejillas, l´ıneas) y observar c´omo se representan sus frecuencias dominantes
+
+Cuando analizamos la transformada de Fourier de una imagen con estructuras periódicas, como rejillas o líneas, observamos que estas estructuras generan picos con estructuras periódicas en el espectro de magnitud y de fase. 
+Dependiendo de la estrucutra de la imágen sintética, los picos pueden aparecer en diferentes posiciones del espectro. Por ejemplo, una rejilla regular genera picos en posiciones equidistantes, mientras que circunferencias generan picos en posiciones radiales.
+
+Lineas verticales:
+
+![alt text](images/lines.png)
+
+Lineas diagonales:
+
+![alt text](images/lines-45.png)
+
+Circunferencias:
+
+![alt text](images/circles.png)
