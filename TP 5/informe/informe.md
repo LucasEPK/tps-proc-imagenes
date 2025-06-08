@@ -186,3 +186,10 @@ Vemos que a watershed le cuesta segmentar bien las monedas, esto es debido a que
 Lo que se realizó fue canny para detectar bordes, clausura para cerrar bordes, apertura para separar las monedas y watershed para segmentarlas.
 
 Yo usaría umbralización y una clausura en vez de canny como vimos anteriormente para obtener un resultado más pulido.
+
+### 11. (*) Elegir y describir alguno de las siguientes tecnicas de segmentación:
+a) **Basada en clustering**  
+b) Basada en Grafos  
+c) Basadas en Modelos Probabilísticos y Estadísticas  
+
+a) La segmentación basada en clustering trata los píxeles como datos sin etiquetar y los agrupa según sus características (por ejemplo color, intensidad o textura). Así, cada grupo o clúster de píxeles define un segmento de imagen. Este enfoque no supervisado resulta útil cuando no se dispone de etiquetas previas, y puede detectar regiones complejas basándose en similitud estadística de los píxeles. A diferencia de métodos simples como el umbralado o la detección de bordes, el clustering permite segmentar imágenes en múltiples regiones con formas arbitrarias y distribuir cada píxel en un segmento.
