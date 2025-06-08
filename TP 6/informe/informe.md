@@ -186,7 +186,7 @@ imagen original:
 resultados:   
 ![alt text](images/charizard_found.png)  
 
-Utilizamos matchTemplate para ver si en la imagen está presente el template y después utilizamos minMaxLoc para localizar donde está el template según el resultado anterior, para después dibujarle un cuadrado.
+Utilizamos `matchTemplate` para ver si en la imagen está presente el template y después utilizamos `minMaxLoc` para localizar donde está el template según el resultado anterior, para después dibujarle un cuadrado.
 
 ### 2. (*) Clasificación basada en características. Extraer características simples (como área o textura) de regiones segmentadas y clasificarlas usando KNN. Sugerencia: scikit-learn + descriptores de regionprops.
 
@@ -233,7 +233,7 @@ Accuracy: 0.625
 weighted avg       0.54      0.62      0.58         8
 ```
 
-Encontramos area, centroide y intensidad media de cada area y clasificamos con knn.
+Encontramos area, centroide y intensidad media de cada región utilizando `regionprops_table` y clasificamos con `KNeighborsClassifier` de sklearn.
 
 ### 5. (*) Reconocimiento estructural. Representar caracteres como grafos de líneas y nodos. Clasificarlos según su estructura. Sugerencia: Estructuras de grafos con networkx (librería de python).
 
@@ -243,7 +243,7 @@ Resultados:
 ![alt text](images/character_skeleton.png)  
 ![alt text](images/grafo_character.png)  
 
-Transformamos un caracter en grafo utilizando networkx
+Transformamos un caracter en grafo utilizando `networkx` y los valores que nos da de aristas y nodos.
 
 ### 6. (*) Clasificación con CNN (Deep Learning). Construir una red neuronal convolucional para clasificar dígitos (MNIST o similar). Sugerencia: TensorFlow o PyTorch + torchvision.datasets.MNIST.
 
@@ -287,4 +287,4 @@ Epoch 5/5
 <keras.src.callbacks.history.History at 0x130004e6660>
 ```
 
-Construimos una red neuronal y la ejecutamos por 5 epocas obteniendo 0.99 de accuracy para los numeros predecidos.
+Construimos una red neuronal utilizando `keras` y la ejecutamos por 5 epocas obteniendo 0.99 de accuracy para los numeros predecidos.
