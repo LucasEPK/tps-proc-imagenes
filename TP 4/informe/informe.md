@@ -173,21 +173,21 @@ Se centra la transformada de Fourier usando fftshift para facilitar su visualiza
 
 Cuando se traslada una imagen, la teoría dice que solo debería cambiar la fase del espectro de Fourier, mientras que la magnitud debería mantenerse igual. Sin embargo, en los experimentos realizados, al trasladar la imagen con cv2.warpAffine, se generan bordes negros en las zonas que quedan vacías. Estos bordes introducen nuevos detalles en la imagen que afectan el resultado, por lo que la magnitud también cambia. En cambio, al aplicar una rotación, el espectro de Fourier se rota en el mismo ángulo que la imagen, conservando su forma. Esto se puede ver claramente en las imágenes comparadas.
 
-Imágen original:
+imagen original:
 
 ![alt text](images/Lenna-full.png)
 
 
-Imágen rotada 45°:
+imagen rotada 45°:
 
 ![alt text](images/rotated-45.png)
 
-Imágen rotada 90°:
+imagen rotada 90°:
 
 ![alt text](images/rotated-90.png)
 
 
-Imágen trasladada:
+imagen trasladada:
 
 ![alt text](images/traslated.png)
 
@@ -197,7 +197,7 @@ Imágen trasladada:
 ### (f) ¿Cómo se refleja una estructura periódica en el dominio frecuencial? Ejercicio sugerido: Usar imágenes sintéticas (rejillas, líneas) y observar cómo se representan sus frecuencias dominantes
 
 Cuando analizamos la transformada de Fourier de una imagen con estructuras periódicas, como rejillas o líneas, observamos que estas estructuras generan picos con estructuras periódicas en el espectro de magnitud y de fase. 
-Dependiendo de la estrucutra de la imágen sintética, los picos pueden aparecer en diferentes posiciones del espectro. Por ejemplo, una rejilla regular genera picos en posiciones equidistantes, mientras que circunferencias generan picos en posiciones radiales.
+Dependiendo de la estrucutra de la imagen sintética, los picos pueden aparecer en diferentes posiciones del espectro. Por ejemplo, una rejilla regular genera picos en posiciones equidistantes, mientras que circunferencias generan picos en posiciones radiales.
 
 Lineas verticales:
 
@@ -218,11 +218,11 @@ Las imágenes suaves, como las desenfocadas, tienen un espectro de Fourier que m
 
 En contraste, las imágenes con bordes definidos presentan un espectro con una mayor presencia de frecuencias altas, lo que indica la existencia de detalles y cambios abruptos en la intensidad de los píxeles.
 
-Imágen original:
+imagen original:
 
 ![alt text](images/Lenna-full.png)
 
-Imágen desenfocada:
+imagen desenfocada:
 
 ![alt text](images/blured.png)
 

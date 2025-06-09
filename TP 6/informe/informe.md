@@ -81,7 +81,7 @@ homogeneity = graycoprops(glcm, 'homogeneity')[0, 0]
 
 A continuación se muestran algunos resultados obtenidos:
 
-### Imágen 1
+### imagen 1
 
 ![alt text](images/wood.png)
 
@@ -91,7 +91,7 @@ Correlation:  0.4394
 Homogeneity:  0.7262
 ```
 
-### Imágen 2
+### imagen 2
 ![alt text](images/sky.png)
     
 ```bash 
@@ -100,7 +100,7 @@ Correlation:  0.9786
 Homogeneity:  0.9893
 ```
 
-### Imágen 3
+### imagen 3
 ![alt text](images/colors.png)
 
 ```bash
